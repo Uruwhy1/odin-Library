@@ -47,8 +47,8 @@ body {
 
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
 /* CONTAINER CSS */
@@ -153,15 +153,17 @@ body {
     display: none;
     position: absolute;
 
-    background-color: #fdd69a;
+    background-color: #fff;
     top: 50;    
 
-    padding: 20px;
+    padding: 30px 20px;
     border: none;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 
 }
+
+/* FORM STUFF */
 .book-form {
     width: 400px;
     display: flex;
@@ -179,10 +181,9 @@ body {
 .book-form input {
     width: 100%;
     border: none;
-    border-bottom: 3px solid #fff;
+    border-bottom: 3px solid #797272;
 
     padding: 0 2px;
-    background-color: rgba(255, 255, 255, 0);
 
     font-weight: 500;
     font-size: 1.2em;
@@ -211,7 +212,7 @@ body {
     padding: 10px;
     border-radius: 5px;
 
-    background-color: #fff;
+    background-color: #dbdbdb;
 }
 #read-label {
     font-weight: 700;
@@ -223,6 +224,58 @@ body {
     transform: scale(1.2);
 }
 
-button[type=submit] {
+.submit {
     margin-top: 15px;
+}
+
+/* CLOSE MODAL BUTTON */
+.closeButton {
+    width: 30px;
+    height: 30px;
+    
+    border: none;
+    border-radius: 5px;
+
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+
+    display: grid;
+    place-content: center;
+
+    background-color: rgb(190, 190, 190);
+    transition: 0.1s;
+}
+.closeButton:hover {
+    transform: scale(1.1);
+    background-color: rgb(117, 117, 117);
+}
+.closeButton:active {
+    background-color: rgb(78, 78, 78);
+}
+
+/* FOOTER */
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    padding: 5px;
+    width: 100%;
+
+    background-color: #686868;
+    color: #fff;
+    text-align: center;
+}
+
+.bold {
+    font-weight: 500;
+}
+.link {
+    color: #00ccff;
+}
+a {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline #00ccff;
 }

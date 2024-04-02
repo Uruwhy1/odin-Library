@@ -1,5 +1,4 @@
 const myLibrary = [];
-addEventListener('DOMContentLoaded', function() {loopBooks(myLibrary)})
 
 /* Example Books */
 let philosophyBook = new Book("Meditations", "Marcus Aurelius", false);
@@ -10,28 +9,89 @@ addBookToLibrary(philosophyBook);
 addBookToLibrary(romanBook);
 /* ------------- */
 
-// ADD BOOKS BUTTON
-const addButton = document.querySelector('.button');
-addButton.addEventListener('click', () => {
-  
+// MODAL STUFF
+const closeButton = document.querySelector('.closeButton');
+const addButton = document.querySelector('.add');
+const modal = document.querySelector('.modal');
+const inputBook = document.querySelector('.submit');
+const form = document.querySelector('.book-form');
 
+form.addEventListener('submit', (event) => {
+  event.preventDefault(); // Prevent default form submission 
+  form.reset();
 })
 
+addButton.addEventListener('click', () => {
+  modal.style.display = 'block';
+});
+closeButton.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+inputBook.addEventListener('click', () => {
 
+  if(!form.checkValidity()) {
+    console.log("Empty!")
+  } else {
+    let book = new Book;
+    book.title = document.querySelector('#title').value;
+    book.author = document.querySelector('#author').value;
+    book.read = document.querySelector('#read').checked;
 
+    addBookToLibrary(book);
+    console.log(book);
+    console.log(myLibrary);
 
+    modal.style.display = 'none';
+  }
+})
+
+// REMOVE BOOK FROM LIST FUNCTIONS
+function removeButtons() {
+  const removeButtons = document.querySelectorAll('.remove-button');
+
+  removeButtons.forEach((button, index) => {
+  /// Remove eventListeners so they don't bloat idk if this is an issue or not but w/e
+  button.removeEventListener('click', () => {
+    myLibrary.splice(index, 1);
+    loopBooks(myLibrary);
+  });
+
+    button.addEventListener('click', () => {
+      myLibrary.splice(index, 1);
+      loopBooks(myLibrary);
+    })
+  });
+}
+
+// CHANGE READ STATUS FUNCTION
+function changeRead() {
+  const readButtons = document.querySelectorAll('.read-button');
+  readButtons.forEach((button, index) => {
+    button.addEventListener('click', () => {
+      myLibrary[index].read = !myLibrary[index].read;
+      loopBooks(myLibrary);
+    })
+  })
+}
+
+// CONSTRUCTOR FUNCTION
 function Book(title, author, bool) {
   this.title = title;
   this.author = author;
   this.read = bool;
 }
 
+
+// ADD AND UPDATE LIBRARY FUNCTIONS
 function addBookToLibrary(book) {
   myLibrary.push(book);
+  loopBooks(myLibrary);
 }
 
 function loopBooks(arr) {
   let bookContainer = document.querySelector('.book-container');
+  bookContainer.innerHTML = "";
+
 
   arr.forEach(function(book) {
     const bookInstance = document.createElement('div');
@@ -79,5 +139,6 @@ function loopBooks(arr) {
 
     bookContainer.appendChild(bookInstance);
   });
+  removeButtons()
+  changeRead()
 }
-
