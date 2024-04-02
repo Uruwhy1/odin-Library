@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="shortcut icon" href="./images/favicon.ico" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library</title>
+  <link rel="stylesheet" href="./reset.css">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./main.js" defer></script>
+</head>
+<body>
+  <div class="book-container">
+  </div>
+  <button class="button" type="button"> 
+     Add Book
+  </button>
+  
+  <div class="modal">
+    <form class="book-form">
+      <input type="text" id="title" name="title" placeholder="Book title..." required><br>
+      <input type="text" id="author" name="author" placeholder="Author name..." required><br>
+      <div class="read-checkbox">
+        <label id="read-label" for="read">Read:</label>
+        <input type="checkbox" id="read" name="read">
+      </div>
+      <button class="button" type="submit">Add Book</button>
+    </form>
+  </div>
+
+  
+</body>
+</html>
