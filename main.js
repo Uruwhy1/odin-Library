@@ -1,9 +1,16 @@
 const myLibrary = [];
 
+class Book {
+  constructor(title, author, bool) {
+    this.title = title;
+    this.author = author;
+    this.read = bool;
+  }
+}
+
 /* Example Books */
 let philosophyBook = new Book("Meditations", "Marcus Aurelius", false);
 let romanBook = new Book("The Storm Before the Storm", "Mike Duncan", true);
-
 
 addBookToLibrary(philosophyBook);
 addBookToLibrary(romanBook);
@@ -32,10 +39,11 @@ inputBook.addEventListener('click', () => {
   if(!form.checkValidity()) {
     console.log("Empty!")
   } else {
-    let book = new Book;
-    book.title = document.querySelector('#title').value;
-    book.author = document.querySelector('#author').value;
-    book.read = document.querySelector('#read').checked;
+    let book = new Book(
+    document.querySelector('#title').value,
+    document.querySelector('#author').value,
+    document.querySelector('#read').checked
+    );
 
     addBookToLibrary(book);
     console.log(book);
@@ -73,14 +81,6 @@ function changeRead() {
     })
   })
 }
-
-// CONSTRUCTOR FUNCTION
-function Book(title, author, bool) {
-  this.title = title;
-  this.author = author;
-  this.read = bool;
-}
-
 
 // ADD AND UPDATE LIBRARY FUNCTIONS
 function addBookToLibrary(book) {
