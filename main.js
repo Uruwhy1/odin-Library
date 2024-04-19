@@ -1,4 +1,5 @@
-const myLibrary = [];
+const storedLibrary = JSON.parse(localStorage.getItem('myLibrary'));
+const myLibrary = storedLibrary ? storedLibrary : [];
 
 class Book {
   constructor(title, author, bool) {
@@ -7,13 +8,6 @@ class Book {
     this.read = bool;
   }
 }
-
-/* Example Books */
-let philosophyBook = new Book("Meditations", "Marcus Aurelius", false);
-let romanBook = new Book("The Storm Before the Storm", "Mike Duncan", true);
-
-addBookToLibrary(philosophyBook);
-addBookToLibrary(romanBook);
 /* ------------- */
 
 // MODAL STUFF
@@ -46,8 +40,7 @@ inputBook.addEventListener('click', () => {
     );
 
     addBookToLibrary(book);
-    console.log(book);
-    console.log(myLibrary);
+
 
     modal.style.display = 'none';
   }
@@ -78,6 +71,7 @@ function changeRead() {
     button.addEventListener('click', () => {
       myLibrary[index].read = !myLibrary[index].read;
       loopBooks(myLibrary);
+      
     })
   })
 }
@@ -86,11 +80,15 @@ function changeRead() {
 function addBookToLibrary(book) {
   myLibrary.push(book);
   loopBooks(myLibrary);
+
 }
 
 function loopBooks(arr) {
+  localStorage.setItem('myLibrary', JSON.stringify(myLibrary));
+
   let bookContainer = document.querySelector('.book-container');
   bookContainer.innerHTML = "";
+  
 
 
   arr.forEach(function(book) {
@@ -142,3 +140,5 @@ function loopBooks(arr) {
   removeButtons()
   changeRead()
 }
+
+document.addEventListener('DOMContentLoaded', loopBooks(myLibrary))
